@@ -125,14 +125,18 @@ def _ensure_repo(registry, name, data, base_path=Path.home()):
         raise Exception("No path found in registery for {name}".format(
         name=name,
     ))
-    path = Path(path)
+    path = base_path.joinpath(path)
     remote = registered_repo.get("remote")
     if remote is None:
         raise Exception("No remote found in registery for {name}".format(
         remote=remote,
     ))
     if not path.exists():
-        git.Repo.clone_from(remote, base_path.joinpath(path), **data)
+        print("Cloning missing repo {repo} to {path}".format(
+            repo=name,
+            path=path
+        ))
+        git.Repo.clone_from(remote, path, **data)
     repo = git.Repo(path)
     branch = data.get("branch")
     if branch is not None:
