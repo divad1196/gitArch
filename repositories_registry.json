@@ -1,0 +1,242 @@
+{
+    "access-addons": {
+        "path": "git/ITP/access-addons",
+        "remote": "https://github.com/it-projects-llc/access-addons"
+    },
+    "account-closing": {
+        "path": "git/OCA/account-closing",
+        "remote": "git@gitlab.open-net.ch:oca/account-closing.git"
+    },
+    "account-financial-reporting": {
+        "path": "git/OCA/account-financial-reporting",
+        "remote": "git@gitlab.open-net.ch:oca/account-financial-reporting.git"
+    },
+    "account-financial-tools": {
+        "path": "git/OCA/account-financial-tools",
+        "remote": "git@gitlab.open-net.ch:oca/account-financial-tools.git"
+    },
+    "account-invoice-reporting": {
+        "path": "git/OCA/account-invoice-reporting",
+        "remote": "git@gitlab.open-net.ch:oca/account-invoice-reporting.git"
+    },
+    "account-invoicing": {
+        "path": "git/OCA/account-invoicing",
+        "remote": "git@gitlab.open-net.ch:oca/account-invoicing.git"
+    },
+    "account-reconcile": {
+        "path": "git/OCA/account-reconcile",
+        "remote": "git@gitlab.open-net.ch:oca/account-reconcile.git"
+    },
+    "aesa": {
+        "path": "git/ONS/cust/aesa",
+        "remote": "git@gitlab.open-net.ch:clients/aesa.git"
+    },
+    "as": {
+        "path": "git/ONS/cust/as",
+        "remote": "git@gitlab.open-net.ch:clients/as.git"
+    },
+    "bank-payment": {
+        "path": "git/OCA/bank-payment",
+        "remote": "git@gitlab.open-net.ch:oca/bank-payment.git"
+    },
+    "bdk": {
+        "path": "git/ONS/cust/bdk",
+        "remote": "git@gitlab.open-net.ch:clients/bdk.git"
+    },
+    "cargobike": {
+        "path": "git/ONS/cust/cargobike",
+        "remote": "git@gitlab.open-net.ch:clients/cargobike.git"
+    },
+    "connector-telephony": {
+        "path": "git/OCA/connector-telephony",
+        "remote": "git@gitlab.open-net.ch:oca/connector-telephony.git"
+    },
+    "delivery-carrier": {
+        "path": "git/OCA/delivery-carrier",
+        "remote": "git@gitlab.open-net.ch:oca/delivery-carrier.git"
+    },
+    "ecor": {
+        "path": "git/ONS/cust/ecor",
+        "remote": "git@gitlab.open-net.ch:clients/ecor.git"
+    },
+    "ekml": {
+        "path": "git/ONS/cust/ekml",
+        "remote": "git@gitlab.open-net.ch:clients/ekml.git"
+    },
+    "enterprise": {
+        "path": "git/Odoo/enterprise",
+        "remote": "git@gitlab.open-net.ch:odoo/enterprise.git"
+    },
+    "esm": {
+        "path": "git/ONS/cust/esm",
+        "remote": "git@gitlab.open-net.ch:clients/esm.git"
+    },
+    "golay": {
+        "path": "git/ONS/cust/golay",
+        "remote": "git@gitlab.open-net.ch:clients/golay.git"
+    },
+    "grangettes": {
+        "path": "git/ONS/cust/grangettes",
+        "remote": "git@gitlab.open-net.ch:clients/grangettes.git"
+    },
+    "icube": {
+        "path": "git/ONS/cust/icube",
+        "remote": "git@gitlab.open-net.ch:clients/icube.git"
+    },
+    "imina": {
+        "path": "git/ONS/cust/imina",
+        "remote": "git@gitlab.open-net.ch:clients/imina.git"
+    },
+    "knowledge": {
+        "path": "git/OCA/knowledge",
+        "remote": "git@gitlab.open-net.ch:oca/knowledge.git"
+    },
+    "l10n-addons_V11": {
+        "path": "git/ITP/l10n-addons_V11",
+        "remote": "https://github.com/it-projects-llc/l10n-addons.git"
+    },
+    "l10n-switzerland": {
+        "path": "git/OCA/l10n-switzerland",
+        "remote": "git@gitlab.open-net.ch:oca/l10n-switzerland.git"
+    },
+    "lagenevoise": {
+        "path": "git/ONS/cust/lagenevoise",
+        "remote": "git@gitlab.open-net.ch:clients/lagenevoise.git"
+    },
+    "ldk": {
+        "path": "git/ONS/cust/ldk",
+        "remote": "git@gitlab.open-net.ch:clients/ldk.git"
+    },
+    "luginbuhl": {
+        "path": "git/ONS/cust/luginbuhl",
+        "remote": "git@gitlab.open-net.ch:clients/luginbuhl.git"
+    },
+    "lumiere": {
+        "path": "git/ONS/cust/lumiere",
+        "remote": "git@gitlab.open-net.ch:clients/lumiere.git"
+    },
+    "mail-addons": {
+        "path": "git/ITP/mail-addons",
+        "remote": "https://github.com/it-projects-llc/mail-addons"
+    },
+    "management-system": {
+        "path": "git/OCA/management-system",
+        "remote": "git@gitlab.open-net.ch:oca/management-system.git"
+    },
+    "manufacture": {
+        "path": "git/OCA/manufacture",
+        "remote": "git@gitlab.open-net.ch:oca/manufacture.git"
+    },
+    "meccad": {
+        "path": "git/ONS/cust/meccad",
+        "remote": "git@gitlab.open-net.ch:clients/meccad.git"
+    },
+    "misc-addons": {
+        "path": "git/ITP/misc-addons",
+        "remote": "https://github.com/it-projects-llc/misc-addons"
+    },
+    "odoo": {
+        "path": "git/Odoo/odoo",
+        "remote": "git@gitlab.open-net.ch:odoo/odoo.git"
+    },
+    "odoo-saas-tools_V11": {
+        "path": "git/ITP/odoo-saas-tools_V11",
+        "remote": "https://github.com/it-projects-llc/odoo-saas-tools.git"
+    },
+    "odoo-telegram_V11": {
+        "path": "git/ITP/odoo-telegram_V11",
+        "remote": "https://github.com/it-projects-llc/odoo-telegram.git"
+    },
+    "ons_debug": {
+        "path": "git/ONS/ons_debug",
+        "remote": "git@gitlab.open-net.ch:ons/ons_debug.git"
+    },
+    "ons_productivity": {
+        "path": "git/ONS/ons_productivity",
+        "remote": "git@gitlab.open-net.ch:ons/ons_productivity.git"
+    },
+    "partner-contact": {
+        "path": "git/OCA/partner-contact",
+        "remote": "git@gitlab.open-net.ch:oca/partner-contact.git"
+    },
+    "payroll": {
+        "path": "git/ONS/payroll",
+        "remote": "git@gitlab.open-net.ch:ons/payroll.git"
+    },
+    "pos": {
+        "path": "git/ONS/pos",
+        "remote": "git@gitlab.open-net.ch:ons/pos.git"
+    },
+    "pos-addons": {
+        "path": "git/ITP/pos-addons",
+        "remote": "https://github.com/it-projects-llc/pos-addons"
+    },
+    "product-attribute": {
+        "path": "git/OCA/product-attribute",
+        "remote": "git@gitlab.open-net.ch:oca/product-attribute.git"
+    },
+    "project": {
+        "path": "git/OCA/project",
+        "remote": "git@gitlab.open-net.ch:oca/project.git"
+    },
+    "purchase-workflow": {
+        "path": "git/OCA/purchase-workflow",
+        "remote": "git@gitlab.open-net.ch:oca/purchase-workflow.git"
+    },
+    "remarq": {
+        "path": "git/ONS/cust/remarq",
+        "remote": "git@gitlab.open-net.ch:clients/remarq.git"
+    },
+    "rental-addons_V11": {
+        "path": "git/ITP/rental-addons_V11",
+        "remote": "https://github.com/it-projects-llc/rental-addons.git"
+    },
+    "reporting-engine": {
+        "path": "git/OCA/reporting-engine",
+        "remote": "git@gitlab.open-net.ch:oca/reporting-engine.git"
+    },
+    "sale-workflow": {
+        "path": "git/OCA/sale-workflow",
+        "remote": "git@gitlab.open-net.ch:oca/sale-workflow.git"
+    },
+    "scripts": {
+        "path": "git/ONS/scripts",
+        "remote": "git@gitlab.open-net.ch:ons/scripts.git"
+    },
+    "server-tools": {
+        "path": "git/OCA/server-tools",
+        "remote": "git@gitlab.open-net.ch:oca/server-tools.git"
+    },
+    "server-ux": {
+        "path": "git/OCA/server-ux",
+        "remote": "git@gitlab.open-net.ch:oca/server-ux.git"
+    },
+    "stock-logistics-warehouse": {
+        "path": "git/OCA/stock-logistics-warehouse",
+        "remote": "git@gitlab.open-net.ch:oca/stock-logistics-warehouse.git"
+    },
+    "stock-logistics-workflow": {
+        "path": "git/OCA/stock-logistics-workflow",
+        "remote": "git@gitlab.open-net.ch:oca/stock-logistics-workflow.git"
+    },
+    "time": {
+        "path": "git/ONS/time",
+        "remote": "git@gitlab.open-net.ch:ons/time.git"
+    },
+    "trs": {
+        "path": "git/ONS/cust/trs",
+        "remote": "git@gitlab.open-net.ch:clients/trs.git"
+    },
+    "voltcontrol": {
+        "path": "git/ONS/cust/voltcontrol",
+        "remote": "git@gitlab.open-net.ch:clients/voltcontrol.git"
+    },
+    "web": {
+        "path": "git/OCA/web",
+        "remote": "git@gitlab.open-net.ch:oca/web.git"
+    },
+    "website-addons": {
+        "path": "git/ITP/website-addons",
+        "remote": "https://github.com/it-projects-llc/website-addons"
+    }
+}

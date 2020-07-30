@@ -1,0 +1,182 @@
+{
+    "access-addons": {
+        "branch": "12.0"
+    },
+    "account-closing": {
+        "branch": "12.0"
+    },
+    "account-financial-reporting": {
+        "branch": "12.0"
+    },
+    "account-financial-tools": {
+        "branch": "12.0"
+    },
+    "account-invoice-reporting": {
+        "branch": "12.0"
+    },
+    "account-invoicing": {
+        "branch": "12.0"
+    },
+    "account-reconcile": {
+        "branch": "12.0"
+    },
+    "aesa": {
+        "branch": "12.0"
+    },
+    "as": {
+        "branch": "12.0"
+    },
+    "bank-payment": {
+        "branch": "12.0"
+    },
+    "bdk": {
+        "branch": "12.0"
+    },
+    "cargobike": {
+        "branch": "12.0"
+    },
+    "connector-telephony": {
+        "branch": "12.0"
+    },
+    "delivery-carrier": {
+        "branch": "12.0"
+    },
+    "ecor": {
+        "branch": "12.0"
+    },
+    "ekml": {
+        "branch": "12.0"
+    },
+    "enterprise": {
+        "branch": "12.0"
+    },
+    "esm": {
+        "branch": "12.0"
+    },
+    "golay": {
+        "branch": "12.0"
+    },
+    "grangettes": {
+        "branch": "12.0"
+    },
+    "icube": {
+        "branch": "12.0"
+    },
+    "imina": {
+        "branch": "12.0"
+    },
+    "knowledge": {
+        "branch": "12.0"
+    },
+    "l10n-addons_V11": {
+        "branch": "11.0"
+    },
+    "l10n-switzerland": {
+        "branch": "12.0"
+    },
+    "lagenevoise": {
+        "branch": "12.0"
+    },
+    "ldk": {
+        "branch": "12.0"
+    },
+    "luginbuhl": {
+        "branch": "12.0"
+    },
+    "lumiere": {
+        "branch": "12.0"
+    },
+    "mail-addons": {
+        "branch": "12.0"
+    },
+    "management-system": {
+        "branch": "12.0"
+    },
+    "manufacture": {
+        "branch": "12.0"
+    },
+    "meccad": {
+        "branch": "12.0"
+    },
+    "misc-addons": {
+        "branch": "12.0"
+    },
+    "odoo": {
+        "branch": "12.0"
+    },
+    "odoo-saas-tools_V11": {
+        "branch": "11.0"
+    },
+    "odoo-telegram_V11": {
+        "branch": "11.0"
+    },
+    "ons_debug": {
+        "branch": "12.0"
+    },
+    "ons_productivity": {
+        "branch": "12.0"
+    },
+    "partner-contact": {
+        "branch": "12.0"
+    },
+    "payroll": {
+        "branch": "12.0"
+    },
+    "pos": {
+        "branch": "12.0"
+    },
+    "pos-addons": {
+        "branch": "12.0"
+    },
+    "product-attribute": {
+        "branch": "12.0"
+    },
+    "project": {
+        "branch": "12.0"
+    },
+    "purchase-workflow": {
+        "branch": "12.0"
+    },
+    "remarq": {
+        "branch": "12.0"
+    },
+    "rental-addons_V11": {
+        "branch": "11.0"
+    },
+    "reporting-engine": {
+        "branch": "12.0"
+    },
+    "sale-workflow": {
+        "branch": "12.0"
+    },
+    "scripts": {
+        "branch": "master"
+    },
+    "server-tools": {
+        "branch": "12.0"
+    },
+    "server-ux": {
+        "branch": "12.0"
+    },
+    "stock-logistics-warehouse": {
+        "branch": "12.0"
+    },
+    "stock-logistics-workflow": {
+        "branch": "12.0"
+    },
+    "time": {
+        "branch": "12.0"
+    },
+    "trs": {
+        "branch": "12.0"
+    },
+    "voltcontrol": {
+        "branch": "12.0"
+    },
+    "web": {
+        "branch": "12.0"
+    },
+    "website-addons": {
+        "branch": "12.0"
+    }
+}
