@@ -104,6 +104,7 @@ def save_server_repositories_state(file, path=Path()):
     json_dump(file, data)
 
 def _ensure_repo(registry, name, data, base_path=Path.home()):
+    base_path = Path(base_path)
     registered_repo = registry.get(name)
     if registered_repo is None:
         raise Exception("Repo {name} is not in registry".format(
@@ -137,9 +138,7 @@ def _ensure_repo(registry, name, data, base_path=Path.home()):
             branch=branch,
         ))
 
-def ensure_server(registry_file, state_file, path=Path.home()):
-    registry = load_json(registry_file)
-    state = load_json(state_file)
+def ensure_server(registry, state, path=Path.home()):
     errors = []
     for name, data in state.items():
         try:
@@ -149,5 +148,10 @@ def ensure_server(registry_file, state_file, path=Path.home()):
     if errors:
         for e in errors:
             print(e)
+
+def ensure_server_from_files(registry_file, state_file, path=Path.home()):
+    registry = load_json(registry_file)
+    state = load_json(state_file)
+    ensure_server(registry, state, path)
 
 
