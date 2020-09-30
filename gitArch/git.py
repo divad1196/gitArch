@@ -2,15 +2,34 @@ import os
 from pathlib import Path
 import git
 from .tools import load_json, json_dump
+from .defaults import DEFAULT_REPOSITORY_REGISTERY_FILENAME, DEFAULT_REPOSITORY_STATE_FILENAME
+
+
+def is_git(path):
+    path = Path(path)
+    if not path.is_dir():
+        return False
+    dir_list = os.listdir(path)
+    if ".git" not in dir_list:
+        return False
+    git_folder = path.joinpath(".git")
+    if git_folder.is_dir():
+        return True
+    return False
+
+def git_tagger(path):
+    if is_git(path):
+        return ["GitRepo"]
+    return []
+
 
 def _find_git_repositories(path=Path()):
     path = Path(path)
     repositories = []
-    dir_list = os.listdir(path)
-    if ".git" in dir_list:
+    if is_git(path):
         repositories.append(path)
     else:
-        for p in dir_list:
+        for p in os.listdir(path):
             next_path = path.joinpath(p)
             if next_path.is_dir():
                 repositories += _find_git_repositories(next_path)
@@ -89,14 +108,14 @@ def server_state(path=Path()):
     return data
 
 
-def register_server_repositories(file, path=Path()):
+def register_server_repositories(file=DEFAULT_REPOSITORY_REGISTERY_FILENAME, path=Path()):
     """
         Register all repositories found in the server
     """
     data = registry_from_server(path)
     json_dump(file, data)
 
-def save_server_repositories_state(file, path=Path()):
+def save_server_repositories_state(file=DEFAULT_REPOSITORY_STATE_FILENAME, path=Path()):
     """
         Save the server's repositories states
     """

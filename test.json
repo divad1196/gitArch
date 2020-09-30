@@ -1,0 +1,18 @@
+{
+    "enterprise": {
+        "path": "Odoo/v13/git/Odoo/enterprise",
+        "remote": "git@gitlab.open-net.ch:odoo/enterprise.git"
+    },
+    "odoo": {
+        "path": "Odoo/v13/git/Odoo/odoo",
+        "remote": "git@gitlab.open-net.ch:odoo/odoo.git"
+    },
+    "ons_productivity": {
+        "path": "Odoo/v13/git/ONS/ons_productivity",
+        "remote": "git@gitlab.open-net.ch:ons/ons_productivity.git"
+    },
+    "rdcarbon": {
+        "path": "Odoo/v13/git/ONS/cust/rdcarbon",
+        "remote": "git@gitlab.open-net.ch:clients/rdcarbon.git"
+    }
+}

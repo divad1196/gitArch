@@ -5,3 +5,5 @@ basic_app.sqlite
 environment/
 trash/
 filestore/
+tests/
+data_example/
