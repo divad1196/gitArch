@@ -1,9 +1,10 @@
 from pathlib import Path
 from os.path import join as joinpath
 from treelib import Node, Tree
+from .defaults import DEFAULT_BASE_PATH
 
 
-def paths_to_dict_tree(path_list, base_path=Path.home()):
+def paths_to_dict_tree(path_list, base_path=DEFAULT_BASE_PATH):
     tree = {}
     base_path = Path(base_path).resolve()
     for path in path_list:
@@ -16,7 +17,7 @@ def paths_to_dict_tree(path_list, base_path=Path.home()):
     return tree
 
 
-def registry_to_dict_tree(registry, base_path=Path.home()):
+def registry_to_dict_tree(registry, base_path=DEFAULT_BASE_PATH):
     path_list = [
         repo["path"]
         for repo in registry.values()
@@ -24,7 +25,7 @@ def registry_to_dict_tree(registry, base_path=Path.home()):
     return paths_to_dict_tree(path_list, base_path)
 
 
-def paths_to_tree(path_list, base_path=Path.home()):
+def paths_to_tree(path_list, base_path=DEFAULT_BASE_PATH):
     tree = Tree()
     root = Path().resolve().root
     tree.create_node(root, root)
@@ -43,7 +44,7 @@ def paths_to_tree(path_list, base_path=Path.home()):
             parent = current_path
     return tree
 
-def tagged_paths_to_tree(path_list, base_path=Path.home(), taggers=[]):
+def tagged_paths_to_tree(path_list, base_path=DEFAULT_BASE_PATH, taggers=[]):
     """
         Same as paths_to_tree but add tags
         taggers must contains functions in format
@@ -90,27 +91,27 @@ def state_paths(registry, server_state):
         if repo in server_state
     ]
 
-def registry_to_tree(registry, base_path=Path.home()):
+def registry_to_tree(registry, base_path=DEFAULT_BASE_PATH):
     path_list = registry_paths(registry)
     return paths_to_tree(path_list, base_path)
 
-def server_to_tree(registry, server_state, base_path=Path.home()):
+def server_to_tree(registry, server_state, base_path=DEFAULT_BASE_PATH):
     path_list = state_paths(registry, server_state)
     return paths_to_tree(path_list, base_path)
 
 
-def paths_tree_string(path_list, base_path=Path.home()):
+def paths_tree_string(path_list, base_path=DEFAULT_BASE_PATH):
     tree = paths_to_tree(path_list, base_path)
     return tree.show(stdout=False)
 
-def registry_tree_string(registry, base_path=Path.home()):
+def registry_tree_string(registry, base_path=DEFAULT_BASE_PATH):
     tree = registry_to_tree(registry, base_path)
     return tree.show(stdout=False)
 
-def server_tree_string(registry, server_state, base_path=Path.home()):
+def server_tree_string(registry, server_state, base_path=DEFAULT_BASE_PATH):
     tree = server_to_tree(registry, server_state, base_path)
     return tree.show(stdout=False)
 
-def print_registry_tree(registry, base_path=Path.home()):
+def print_registry_tree(registry, base_path=DEFAULT_BASE_PATH):
     tree = registry_to_tree(registry, base_path)
     tree.show()

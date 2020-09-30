@@ -2,7 +2,7 @@ import os
 from pathlib import Path
 import git
 from .tools import load_json, json_dump
-from .defaults import DEFAULT_REPOSITORY_REGISTERY_FILENAME, DEFAULT_REPOSITORY_STATE_FILENAME
+from .defaults import DEFAULT_REPOSITORY_REGISTERY_FILENAME, DEFAULT_REPOSITORY_STATE_FILENAME, DEFAULT_BASE_PATH
 
 
 def is_git(path):
@@ -56,12 +56,11 @@ def _repo_name(repo):
     name = directory.stem
     return name
 
-def _gather_repo_info(repo):
-    home = Path.home()
+def _gather_repo_info(repo, base_path=DEFAULT_BASE_PATH):
     directory = Path(repo.working_dir)
     name = _repo_name(repo)
     data = {
-        "path": str(directory.relative_to(home)),
+        "path": str(directory.relative_to(base_path)),
         "remote": _get_repo_remote(repo),
     }
     return name, data
@@ -122,24 +121,24 @@ def save_server_repositories_state(file=DEFAULT_REPOSITORY_STATE_FILENAME, path=
     data = server_state(path)
     json_dump(file, data)
 
-def _ensure_repo(registry, name, data, base_path=Path.home()):
+def _ensure_repo(registry, name, data, base_path=DEFAULT_BASE_PATH):
     base_path = Path(base_path)
     registered_repo = registry.get(name)
     if registered_repo is None:
         raise Exception("Repo {name} is not in registry".format(
-        name=name,
-    ))
+            name=name,
+        ))
     path = registered_repo.get("path")
     if path is None:
         raise Exception("No path found in registery for {name}".format(
-        name=name,
-    ))
+            name=name,
+        ))
     path = base_path.joinpath(path)
     remote = registered_repo.get("remote")
     if remote is None:
         raise Exception("No remote found in registery for {name}".format(
-        remote=remote,
-    ))
+            remote=remote,
+        ))
     if not path.exists():
         print("Cloning missing repo {repo} to {path}".format(
             repo=name,
@@ -151,13 +150,81 @@ def _ensure_repo(registry, name, data, base_path=Path.home()):
     if branch is not None:
         active_branch = repo.active_branch.name
         if active_branch != branch:
-            raise Exception("Active branch for repo {name} is {active_branch} instend of {branch}".format(
+            raise Exception("Active branch for repo {name} is {active_branch} instead of {branch}".format(
+                name=name,
+                active_branch=active_branch,
+                branch=branch,
+            ))
+
+def _ensure_repo2(name, data):
+    path = data["path"]
+    remote = data["remote"]
+    branch = data["branch"]
+    if not path.exists():
+        print("Cloning missing repo {repo} to {path}".format(
+            repo=name,
+            path=path
+        ))
+        git.Repo.clone_from(remote, path, **data)
+    repo = git.Repo(path)
+    branch = data.get("branch")
+    if branch is not None:
+        active_branch = repo.active_branch.name
+        if active_branch != branch:
+            raise Exception("Active branch for repo {name} is {active_branch} instead of {branch}".format(
+                name=name,
+                active_branch=active_branch,
+                branch=branch,
+            ))
+
+
+def _resolve_from_registry(registry, name, data, base_path=DEFAULT_BASE_PATH):
+    base_path = Path(base_path)
+
+    registered_repo = registry.get(name)
+    if registered_repo is None:
+        raise Exception("Repo {name} is not in registry".format(
             name=name,
-            active_branch=active_branch,
-            branch=branch,
         ))
 
-def ensure_server(registry, state, path=Path.home()):
+    path = registered_repo.get("path")
+    if path is None:
+        raise Exception("No path found in registery for {name}".format(
+            name=name,
+        ))
+    path = base_path.joinpath(path)
+
+    remote = registered_repo.get("remote")
+    if remote is None:
+        raise Exception("No remote found in registery for {name}".format(
+            remote=remote,
+        ))
+
+    return {
+        "remote": remote,
+        "path": path,
+        "branch": data.get("branch")
+    }
+
+
+def resolve_from_registry(registry, state, path=DEFAULT_BASE_PATH):
+    repositories = []
+    errors = []
+    for name, data in state.items():
+        try:
+            repo = _resolve_from_registry(
+                registry, name, data, path
+            )
+            repositories.append(repo)
+        except Exception as e:
+            errors.append(e)
+    if errors:
+        for e in errors:
+            print(e)
+    return repositories
+
+
+def ensure_server(registry, state, path=DEFAULT_BASE_PATH):
     errors = []
     for name, data in state.items():
         try:
@@ -168,7 +235,7 @@ def ensure_server(registry, state, path=Path.home()):
         for e in errors:
             print(e)
 
-def ensure_server_from_files(registry_file, state_file, path=Path.home()):
+def ensure_server_from_files(registry_file, state_file, path=DEFAULT_BASE_PATH):
     registry = load_json(registry_file)
     state = load_json(state_file)
     ensure_server(registry, state, path)
