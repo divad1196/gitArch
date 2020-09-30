@@ -1,3 +1,4 @@
+import threading
 import os
 from pathlib import Path
 import git
@@ -239,11 +240,25 @@ def ensure_server_old(registry, state, path=DEFAULT_BASE_PATH):
 def ensure_server(registry, state, path=DEFAULT_BASE_PATH):
     errors = []
     repos = resolve_from_registry(registry, state, path)
+    threads = []
     for name, data in repos.items():
         try:
-            _ensure_repo(name, data)
+            td = threading.Thread(
+                target=_ensure_repo,
+                args=(name, data)
+            )
+            td.start()
+            threads.append(td)
+            # _ensure_repo(name, data)
         except Exception as e:
             errors.append(e)
+
+    try:
+        for td in threads:
+            td.join()
+    except Exception as e:
+        errors.append(e)
+
     if errors:
         for e in errors:
             print(e)
