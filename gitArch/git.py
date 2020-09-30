@@ -121,7 +121,7 @@ def save_server_repositories_state(file=DEFAULT_REPOSITORY_STATE_FILENAME, path=
     data = server_state(path)
     json_dump(file, data)
 
-def _ensure_repo(registry, name, data, base_path=DEFAULT_BASE_PATH):
+def _ensure_repo_old(registry, name, data, base_path=DEFAULT_BASE_PATH):
     base_path = Path(base_path)
     registered_repo = registry.get(name)
     if registered_repo is None:
@@ -156,7 +156,7 @@ def _ensure_repo(registry, name, data, base_path=DEFAULT_BASE_PATH):
                 branch=branch,
             ))
 
-def _ensure_repo2(name, data):
+def _ensure_repo(name, data):
     path = data["path"]
     remote = data["remote"]
     branch = data["branch"]
@@ -165,7 +165,7 @@ def _ensure_repo2(name, data):
             repo=name,
             path=path
         ))
-        git.Repo.clone_from(remote, path, **data)
+        git.Repo.clone_from(remote, path, branch=branch)
     repo = git.Repo(path)
     branch = data.get("branch")
     if branch is not None:
@@ -208,14 +208,14 @@ def _resolve_from_registry(registry, name, data, base_path=DEFAULT_BASE_PATH):
 
 
 def resolve_from_registry(registry, state, path=DEFAULT_BASE_PATH):
-    repositories = []
+    repositories = {}
     errors = []
     for name, data in state.items():
         try:
             repo = _resolve_from_registry(
                 registry, name, data, path
             )
-            repositories.append(repo)
+            repositories[name] = repo
         except Exception as e:
             errors.append(e)
     if errors:
@@ -224,16 +224,30 @@ def resolve_from_registry(registry, state, path=DEFAULT_BASE_PATH):
     return repositories
 
 
-def ensure_server(registry, state, path=DEFAULT_BASE_PATH):
+def ensure_server_old(registry, state, path=DEFAULT_BASE_PATH):
     errors = []
     for name, data in state.items():
         try:
-            _ensure_repo(registry, name, data, path)
+            _ensure_repo_old(registry, name, data, path)
         except Exception as e:
             errors.append(e)
     if errors:
         for e in errors:
             print(e)
+
+
+def ensure_server(registry, state, path=DEFAULT_BASE_PATH):
+    errors = []
+    repos = resolve_from_registry(registry, state, path)
+    for name, data in repos.items():
+        try:
+            _ensure_repo(name, data)
+        except Exception as e:
+            errors.append(e)
+    if errors:
+        for e in errors:
+            print(e)
+
 
 def ensure_server_from_files(registry_file, state_file, path=DEFAULT_BASE_PATH):
     registry = load_json(registry_file)
