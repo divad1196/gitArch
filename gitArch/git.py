@@ -121,58 +121,22 @@ def save_server_repositories_state(file=DEFAULT_REPOSITORY_STATE_FILENAME, path=
     data = server_state(path)
     json_dump(file, data)
 
-def _ensure_repo_old(registry, name, data, base_path=DEFAULT_BASE_PATH):
-    base_path = Path(base_path)
-    registered_repo = registry.get(name)
-    if registered_repo is None:
-        raise Exception("Repo {name} is not in registry".format(
-            name=name,
-        ))
-    path = registered_repo.get("path")
-    if path is None:
-        raise Exception("No path found in registery for {name}".format(
-            name=name,
-        ))
-    path = base_path.joinpath(path)
-    remote = registered_repo.get("remote")
-    if remote is None:
-        raise Exception("No remote found in registery for {name}".format(
-            remote=remote,
-        ))
-    if not path.exists():
-        print("Cloning missing repo {repo} to {path}".format(
-            repo=name,
-            path=path
-        ))
-        git.Repo.clone_from(remote, path, **data)
-    repo = git.Repo(path)
-    branch = data.get("branch")
-    if branch is not None:
-        active_branch = repo.active_branch.name
-        if active_branch != branch:
-            raise Exception("Active branch for repo {name} is {active_branch} instead of {branch}".format(
-                name=name,
-                active_branch=active_branch,
-                branch=branch,
-            ))
-
-def _ensure_repo(name, data):
+def _ensure_repo(data):
     path = data["path"]
     remote = data["remote"]
-    branch = data["branch"]
+    branch = data.get("branch")
     if not path.exists():
         print("Cloning missing repo {repo} to {path}".format(
-            repo=name,
+            repo=path.stem,
             path=path
         ))
         git.Repo.clone_from(remote, path, branch=branch)
     repo = git.Repo(path)
-    branch = data.get("branch")
     if branch is not None:
         active_branch = repo.active_branch.name
         if active_branch != branch:
             raise Exception("Active branch for repo {name} is {active_branch} instead of {branch}".format(
-                name=name,
+                name=path.stem,
                 active_branch=active_branch,
                 branch=branch,
             ))
@@ -224,29 +188,20 @@ def resolve_from_registry(registry, state, path=DEFAULT_BASE_PATH):
     return repositories
 
 
-def ensure_server_old(registry, state, path=DEFAULT_BASE_PATH):
+def ensure(data, path=DEFAULT_BASE_PATH):
     errors = []
-    for name, data in state.items():
+    for repo in data:
         try:
-            _ensure_repo_old(registry, name, data, path)
+            _ensure_repo(repo)
         except Exception as e:
             errors.append(e)
     if errors:
         for e in errors:
             print(e)
-
 
 def ensure_server(registry, state, path=DEFAULT_BASE_PATH):
-    errors = []
     repos = resolve_from_registry(registry, state, path)
-    for name, data in repos.items():
-        try:
-            _ensure_repo(name, data)
-        except Exception as e:
-            errors.append(e)
-    if errors:
-        for e in errors:
-            print(e)
+    ensure(repos, path=path)
 
 
 def ensure_server_from_files(registry_file, state_file, path=DEFAULT_BASE_PATH):
